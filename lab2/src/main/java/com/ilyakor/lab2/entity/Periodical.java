@@ -25,7 +25,7 @@ public class Periodical {
     private String name;
 
     @Column(name="price")
-    private double price;
+    private float price;
 
     public void copyFields(Periodical toCopy){
         this.name = toCopy.name;

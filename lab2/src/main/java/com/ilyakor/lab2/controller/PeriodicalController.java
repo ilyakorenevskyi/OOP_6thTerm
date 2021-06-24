@@ -1,5 +1,6 @@
 package com.ilyakor.lab2.controller;
 
+import com.ilyakor.lab2.dto.PeriodicalRequest;
 import com.ilyakor.lab2.entity.Periodical;
 import com.ilyakor.lab2.repository.PeriodicalRepo;
 import com.ilyakor.lab2.service.PeriodicalService;
@@ -23,8 +24,9 @@ public class PeriodicalController {
     }
 
     @PostMapping
-    public ResponseEntity<Periodical> addPeriodical(Periodical periodical){
-        return ResponseEntity.ok(periodical);
+    public ResponseEntity<Periodical> addPeriodical(@RequestBody PeriodicalRequest periodical){
+        System.out.println(periodical.getName());
+        return ResponseEntity.ok(service.addPeriodical(periodical));
     }
 
     @GetMapping("/{id}")
@@ -37,8 +39,8 @@ public class PeriodicalController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Periodical> updatePeriodical(@PathVariable long id, @RequestBody Periodical periodical){
-        Periodical updatedPeriodical =  service.updatePeriodical(periodical);
+    public ResponseEntity<Periodical> updatePeriodical(@PathVariable long id, @RequestBody PeriodicalRequest periodical){
+        Periodical updatedPeriodical =  service.updatePeriodical(id,periodical);
         if(updatedPeriodical==null){
             return ResponseEntity.badRequest().body(null);
         }

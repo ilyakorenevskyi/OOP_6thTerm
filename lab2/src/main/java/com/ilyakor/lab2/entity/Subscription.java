@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,6 +15,8 @@ import java.util.Date;
 @Table(name="subscription",schema = "public")
 public class Subscription {
     @Id
+    @GeneratedValue(generator = "bets_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "bets_id_seq", sequenceName = "bets_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Long id;
 

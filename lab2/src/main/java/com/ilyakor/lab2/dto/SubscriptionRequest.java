@@ -12,6 +12,5 @@ import java.util.Date;
 public class SubscriptionRequest {
     private long periodicalId;
     private long clientId;
-    private Date startDate;
     private int period;
 }

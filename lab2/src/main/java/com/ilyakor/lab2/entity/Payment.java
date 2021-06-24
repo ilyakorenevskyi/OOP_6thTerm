@@ -14,6 +14,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class Payment {
     @Id
+    @GeneratedValue(generator = "bets_id_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "bets_id_seq", sequenceName = "bets_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -25,6 +27,6 @@ public class Payment {
     private Date date;
 
     @Column(name="amount")
-    private double totalCost;
+    private float totalCost;
 
 }

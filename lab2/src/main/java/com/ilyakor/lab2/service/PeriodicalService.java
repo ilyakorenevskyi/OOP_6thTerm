@@ -1,5 +1,6 @@
 package com.ilyakor.lab2.service;
 
+import com.ilyakor.lab2.dto.PeriodicalRequest;
 import com.ilyakor.lab2.entity.Periodical;
 import com.ilyakor.lab2.repository.PeriodicalRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +26,12 @@ public class PeriodicalService {
     }
 
 
-    public Periodical addPeriodical(Periodical periodical){
-        if(repo.existsById(periodical.getId())){
-            return null;
-        }
-        else {
-            repo.save(periodical);
-            return periodical;
-        }
+    public Periodical addPeriodical(PeriodicalRequest periodical){
+        Periodical newPeriodical = new Periodical();
+        newPeriodical.setName(periodical.getName());
+        newPeriodical.setPrice(periodical.getPrice());
+        repo.save(newPeriodical);
+        return newPeriodical;
     }
 
     public void deletePeriodical(long id){
@@ -44,14 +43,15 @@ public class PeriodicalService {
         }
     }
 
-    public Periodical updatePeriodical(Periodical periodical){
-        Periodical old = repo.findById(periodical.getId()).orElse(null);
-        if(old == null) return null;
+    public Periodical updatePeriodical(long id, PeriodicalRequest periodical){
+        Periodical updated = repo.findById(id).orElse(null);
+        if(updated == null) return null;
         else{
-            old.copyFields(periodical);
-            repo.save(old);
+            updated.setName(periodical.getName());
+            updated.setPrice(periodical.getPrice());
+            repo.save(updated);
         }
-        return old;
+        return updated;
     }
 
 }

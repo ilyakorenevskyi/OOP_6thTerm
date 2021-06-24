@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class PeriodicalRequest {
     private String name;
-    private String price;
+    private float price;
 }

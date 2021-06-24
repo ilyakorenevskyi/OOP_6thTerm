@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ConnectionPool {
-    private static int INITIAL_POOL_SIZE  = 5;
+    public static int INITIAL_POOL_SIZE  = 5;
     private final List<Connection> connections;
     private final List<Connection> usedConnections = new ArrayList<>();
     private final static ConnectionPool instance  = new ConnectionPool("jdbc:postgresql://localhost:5432/periodicals", "postgres", "admin");

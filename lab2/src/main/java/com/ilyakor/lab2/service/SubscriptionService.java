@@ -34,17 +34,22 @@ public class SubscriptionService {
 
     }
 
+    public List<Subscription> getAllSubsByClient(Client client) {
 
-    public Subscription addSub(SubscriptionRequest sub) {
+        return (List<Subscription>) subsRepo.findSubscriptionsByClient(client);
+
+    }
+
+    public Subscription addSub(Client client, SubscriptionRequest sub) {
 
         Subscription subscription = new Subscription();
 
-        Optional<Client> client = clientRepo.findById(sub.getClientId());
+
 
         Optional<Periodical> periodical = periodicalRepo.findById(sub.getPeriodicalId());
 
-        if (client.isPresent() && periodical.isPresent()) {
-            subscription.setClient(client.get());
+        if (periodical.isPresent()) {
+            subscription.setClient(client);
             subscription.setPeriodical(periodical.get());
             subscription.setStatus(true);
             subscription.setPeriod(sub.getPeriod());

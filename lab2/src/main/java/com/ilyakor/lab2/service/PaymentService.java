@@ -10,6 +10,7 @@ import com.ilyakor.lab2.repository.SubscriptionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -28,7 +29,7 @@ public class PaymentService {
 
         if (sub.isPresent()) {
             payment.setSubscription(sub.get());
-            payment.setDate(paymentRequest.getPayTime());
+            payment.setDate(java.sql.Date.valueOf(LocalDate.now()));
             payment.setTotalCost(paymentRequest.getAmount());
             return paymentRepo.save(payment);
         }

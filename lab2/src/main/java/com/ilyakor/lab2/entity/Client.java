@@ -18,6 +18,6 @@ public class Client {
     private Long id;
 
     @Column(name="login", nullable = false)
-    private Long username;
+    private String username;
     
 }
